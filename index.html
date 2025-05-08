@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warning Notification</title>
+    <title>Video Downloader</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,30 +19,28 @@
             font-size: 16px;
             cursor: pointer;
         }
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #ffcccb;
-            color: #8b0000;
-            padding: 10px;
-            border: 1px solid #ff9999;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        .notification.show {
-            opacity: 1;
-        }
     </style>
 </head>
 <body>
 
-<button id="warningButton">Show Warning</button>
+<button id="downloadButton">Download Video</button>
 
-<div id="notification" class="notification">WARNING: This is a custom warning message!</div>
+<script>
+    document.getElementById('downloadButton').addEventListener('click', function() {
+        // Create a temporary link element
+        const link = document.createElement('a');
+        // Set the href attribute to the path of the video file
+        link.href = 'https://file-examples.com/wp-content/storage/2017/04/file_example_MP4_1920_18MG.mp4'; // Replace with your video link
+        // Set the download attribute to specify the default file name
+        link.download = 'downloaded-video.mp4';
+        // Append the link to the body (required for Firefox)
+        document.body.appendChild(link);
+        // Programmatically click the link to trigger the download
+        link.click();
+        // Remove the link from the body
+        document.body.removeChild(link);
+    });
+</script>
 
-<script src="script.js"></script>
 </body>
 </html>
